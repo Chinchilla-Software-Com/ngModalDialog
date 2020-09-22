@@ -1,0 +1,12 @@
+{
+	"name": "@chinchilla-software/ng-modal-dialog",
+	"private": false,
+	"version": "1.0.0",
+	"description": "Some simple dialogs",
+	"repository": "https://github.com/Chinchilla-Software-Com/ngModalDialog",
+	"dependencies": {
+		"ng-dialog": "1.4.0",
+		"@chinchilla-software/ng-logger": "1.0.0",
+		"@chinchilla-software/ng-date-time-picker": "1.0.0",
+	},
+}
