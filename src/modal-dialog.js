@@ -4,7 +4,7 @@ Modal.info('This record is current inactive');
 Modal.alert('Are you sure?', {color:'blue', hoverColor:'red', buttonLabel:'Cancel'});
 */
 
-angular.module("ngModalDialog", ["ngDateTimePicker"]);
+angular.module("ngModalDialog", []);
 
 angular
 	.module('ngModalDialog')
