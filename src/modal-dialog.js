@@ -4,7 +4,7 @@ Modal.info('This record is current inactive');
 Modal.alert('Are you sure?', {color:'blue', hoverColor:'red', buttonLabel:'Cancel'});
 */
 
-angular.module("ngModalDialog", []);
+angular.module("ngModalDialog", ["ngDialog", "ngLogger"]);
 
 angular
 	.module('ngModalDialog')
@@ -108,6 +108,10 @@ function modalDialog(ngDialog, logger) {
 				trapFocus = false;
 				controlType = "jq-date-picker";
 				break;
+			case "password":
+				trapFocus = true;
+				controlType = "type='password'";
+				break;
 			case "text":
 			default:
 				trapFocus = true;
@@ -151,6 +155,10 @@ function modalDialog(ngDialog, logger) {
 		return rawPrompt("datetime", message, defaultValue, confirmLabel, cancelLabel, allowEmptyResult);
 	};
 
+	var promptForPassword = function (message, defaultValue, confirmLabel, cancelLabel, allowEmptyResult) {
+		return rawPrompt("password", message, defaultValue, confirmLabel, cancelLabel, allowEmptyResult);
+	};
+
 	var decide = function (message, options, showCancel, defaultValue) {
 		var optionsHtml = '';
 		var cancelHtml = showCancel ? '  <button type="button" class="btn white smaller hover-red" ng-click="closeThisDialog(\'cancel\')">Cancel</button>' : '';
@@ -189,6 +197,7 @@ function modalDialog(ngDialog, logger) {
 		prompt: prompt,
 		promptForDate: promptForDate,
 		promptForDateTime: promptForDateTime,
+		promptForPassword: promptForPassword,
 		decide: decide,
 		success: success
 	};
