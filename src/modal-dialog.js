@@ -31,10 +31,6 @@ function modalDialog(ngDialog, logger) {
 		logger.warning(message);
 	};
 
-	var warn = function (message) {
-		warning(message);
-	};
-
 	var error = function (message) {
 		showErrorDialog(message);
 	};
@@ -201,6 +197,8 @@ function modalDialog(ngDialog, logger) {
 		info: info,
 		confirm: confirm,
 		alert: alert,
+		warn: warning,
+		warning: warning,
 		error: error,
 		prompt: prompt,
 		promptForDate: promptForDate,
