@@ -1,0 +1,4 @@
+﻿/* This disabled a hideous drop shadow */
+#toast-container, .toast .toast-close-button {
+    box-shadow: none;
+}

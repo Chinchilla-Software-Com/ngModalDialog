@@ -2,6 +2,8 @@
 Modal.showErrorDialog('Are you sure you want to delete this record?');
 Modal.info('This record is current inactive');
 Modal.alert('Are you sure?', {color:'blue', hoverColor:'red', buttonLabel:'Cancel'});
+
+see https://github.com/CodeSeven/toastr for options
 */
 
 angular.module("ngModalDialog", ["ngDialog", "ngLogger"]);
@@ -11,28 +13,28 @@ angular
 	.factory('modalDialog', ["ngDialog", "logger", modalDialog]);
 
 function modalDialog(ngDialog, logger) {
-	var showErrorDialog = function (err) {
+	var showErrorDialog = function (err, title, options) {
 		if (!err) {
 			return;
 		}
 		var message = window.angular.isObject(err) ? err.error || err.ExceptionMessage || err.Message : err;
-		logger.error(message);
+		logger.error(message, title, options);
 	};
 
-	var info = function (message) {
-		logger.info(message);
+	var info = function (message, title, options) {
+		logger.info(message, title, options);
 	};
 
-	var success = function (message) {
-		logger.success(message);
+	var success = function (message, title, options) {
+		logger.success(message, title, options);
 	};
 
-	var warning = function (message) {
-		logger.warning(message);
+	var warning = function (message, title, options) {
+		logger.warning(message, title, options);
 	};
 
-	var error = function (message) {
-		showErrorDialog(message);
+	var error = function (message, title, options) {
+		showErrorDialog(message, title, options);
 	};
 
 	var confirm = function (title, message, options) {
