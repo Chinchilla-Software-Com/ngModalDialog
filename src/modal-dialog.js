@@ -78,18 +78,42 @@ function modalDialog(ngDialog, logger) {
 		});
 	};
 
-	var alert = function (message, options) {
-		return ngDialog.open({
-			template: '' +
+	var alert = function (title, message, options) {
+		var template;
+		var oldSettings = true;
+		if (message === undefined || message === null) {
+			message = title;
+		} else if (typeof (message) == "function") {
+			options = message;
+			message = title;
+		} else {
+			oldSettings = false;
+		}
+		if (oldSettings)
+			template = '' +
 				'<div class="ngdialog-message">' +
 				'  <p>' + message + '</p>' +
 				'</div>' +
 				'<div class="ngdialog-buttons">' +
 				'  <button type="button" class="btn {{color}} smaller hover-{{hoverColor}}" ng-click="closeThisDialog(1)">{{buttonLabel}}</button>' +
-				'</div>',
+				'</div>';
+		else
+			template = '' +
+				'<div class="ngdialog-title {{titleColor}}">' +
+				'  <p>' + title + '</p>' +
+				'</div>' +
+				'<div class="ngdialog-message">' +
+				'  <p>' + message + '</p>' +
+				'</div>' +
+				'<div class="ngdialog-buttons">' +
+				'  <button type="button" class="btn {{color}} smaller hover-{{hoverColor}}" ng-click="closeThisDialog(1)">{{buttonLabel}}</button>' +
+				'</div>';
+
+		return ngDialog.open({
+			template: template,
 			controller: [
 				'$scope', function ($scope) {
-					angular.extend($scope, { buttonLabel: 'Ok', color: 'white', hoverColor: 'orange' }, options);
+					angular.extend($scope, { buttonLabel: 'Ok', color: 'white', hoverColor: 'orange', titleColor: 'red' }, options);
 				}
 			],
 			"plain": true
